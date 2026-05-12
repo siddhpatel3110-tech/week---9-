@@ -27,4 +27,11 @@ const student = {
     age: 19,
     courses: ['Math', 'Programming', 'English'],
 };
+const text = JSON.stringify(student);
+console.log('1) student as JSON (one line):');
+console.log(`   ${text}`);
 
+// -------- 2) Pretty-printing with indentation --------
+// The third ariugment is the number of spaces to indent.
+// Use it for logs and files thet humnas will read.
+const Pretty = JSON.stringify(student, null, 2);

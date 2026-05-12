@@ -1,0 +1,84 @@
+// ===============================================
+// 03-data-modeling.js
+// ===============================================
+//
+// "Data modeling" means choosing how to STRUCTURE the information
+// in your program so that it accurately represents the real world and is easy to use.
+//
+// In JavaScript, the two most fundamental building blocks for data modeling are:
+// OBJECTS ({}) -> Used to represent a SINGLE thing with named properties (characteristics).
+//                 Example: One specific book = { title: "Dune", author: "Frank Herbet"}
+// ARRAYS ([]) -> Used to represent a LIST of things, kept in a specific order.
+//                Example: A library shelf = an array of multiple book objects.
+//
+console.log('=== 3. Object and Array as data modeling ===\n');
+
+// -------- 1) One object = one thing --------
+const book1 = {
+    title: 'Clean Code',
+    author: 'Robert Martin',
+    Pages: 464,
+    available: true,
+};
+console.log('1) one book object');
+console.log(`   ${book1.title} by ${book1.author} (${book1.pages} pages)`);
+
+// -------- 2) One array = a list of things --------
+const library = [
+    { title: 'Clean Code', author: 'Robert Martin', Pages: 464, available: true },
+    { title: 'JavaScript: The Good Parts', author: 'Douglas Crockford', Pages: 176, available: false },
+    { title: 'Eloquent JavaScript', author: 'Marijn Haverbeke', Pages: 472, available: true },
+    { title: "You Don't Know JS", author: 'Kyle Simpson', Pages: 278, available: true },
+];
+
+console.log(`\n2) the library has ${library.length} books:`);
+
+// -------- 3) Looping with forEach --------
+console.log('\n3) all titles:');
+library.forEach(book => {
+    console.log(`   ${book.title}`);
+});
+
+// -------- 4) filter: Creates a NEW array with only the items that return 'true' --------
+const availableBooks = library.filter(book => book.available);
+console.log(`\n4) books currently available: ${availableBooks.length}`);
+availableBooks.forEach(book => {
+    console.log(`   ${book.title}`);
+});
+
+// -------- 5) map: Creates a NEW array by transforming each item --------
+const titles = library.map(book => book.title);
+console.log(`\n5)  just the titles:`);
+console.log(`   ${titles.join(', ')}`);
+
+// -------- 6) find: get the FIRST item that matches --------
+const longBook = library.find(book => book.pages > 400);
+console.log(`\n6) first book with more than 400 pages:`);
+console.log(`   ${longBook.title})`);
+
+// -------- 7) reduce: Combine all items into a one value --------
+const totalPages = library.reduce((sum, book) => sum + book.pages, 0);
+console.log(`\n7) total pages across all books: ${totalPages}`);
+
+// -------- 8) Nested data: object inside object, array inside object --------
+const studentRecord = {
+    id: 'S-101',
+    name: 'Layla',
+    address: {
+        street: '123 University Rd',
+        city: 'Beirut',
+        country: 'Lebanon',
+    },
+    grades: [85, 92, 78, 90],
+};
+
+console.log(`\n8) nested data:`);
+console.log(`   name: ${studentRecord.name}`);
+console.log(`   city: ${studentRecord.address.city}`);
+console.log(`   grade: ${studentRecord.grades.join(', ')}`);
+
+const sum = studentRecord.grades.reduce((a, b) => a + b, 0);
+const average = sum / studentRecord.grades.length;
+console.log(`   average: ${average}`);
+
+console.log('\nDone.\n');
